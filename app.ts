@@ -18,17 +18,19 @@ const typeDefs = gql(`
 
 // The root provides a resolver function for each API endpoint
 const resolvers = {
- CardDetails: {
-   __resolveReferance() {
-     return ''
-   }
- },
- Query: {
-  GetCard(_: any, args: any) {
-    console.log(args.cardNumber)
-    return args.cardNumber
+  Query: {
+    GetCard(_: any, args: any) {
+      console.log(args)
+      return {
+        isValid: isValid(args.cardNumber)
+      }
+    }
+  },
+  CardDetails: {
+    __resolveReferance() {
+      return []
+    }
   }
-}
 };
 
 const server = new ApolloServer({
@@ -40,6 +42,6 @@ const server = new ApolloServer({
   ])
 });
 
-server.listen({ port: 4000 }).then(({ url }:any) => {
+server.listen({ port: 4000 }).then(({ url }: any) => {
   console.log(`🚀 Server ready at ${url}`);
 });
