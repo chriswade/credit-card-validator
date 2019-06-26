@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
-import { isValid } from "./resolver";
+import { cardType, lluhnCheck } from "./resolver";
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql(`
@@ -22,7 +22,9 @@ const resolvers = {
     GetCard(_: any, args: any) {
       console.log(args)
       return {
-        isValid: isValid(args.cardNumber)
+        isValid: lluhnCheck(args.cardNumber),
+        fullName: args.fullName,
+        cardType: cardType(args.cardNumber)
       }
     }
   },
