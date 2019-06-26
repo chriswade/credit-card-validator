@@ -20,12 +20,13 @@ const typeDefs = gql(`
 const resolvers = {
  CardDetails: {
    __resolveReferance() {
-     return isValid
+     return ''
    }
  },
  Query: {
   GetCard(_: any, args: any) {
-    return args.fullName
+    console.log(args.cardNumber)
+    return args.cardNumber
   }
 }
 };
