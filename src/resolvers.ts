@@ -5,8 +5,9 @@ export const resolvers = {
   Query: {
     GetCard(_: any, args: any) {
       if(String(args.CSV).length !== 3) {
-        console.log()
-        throw new UserInputError('Please enter valid card numver')
+        throw new UserInputError('Please enter valid CSV')
+      } else if(args.cardNumber.length < 13 || args.cardNumber.length > 16) {
+        throw new UserInputError('please input a valid credit card number')
       }
       return {
         isValid: checkCardValidator(args.cardNumber),
