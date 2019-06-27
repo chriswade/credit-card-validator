@@ -11,7 +11,7 @@ npm i
 ```bash
 npm run server
 ```
- then head to http://localhost:4000/graphql to run queries
+ then head to http://localhost:4000/ to run queries
 
 ## Running queries
 
